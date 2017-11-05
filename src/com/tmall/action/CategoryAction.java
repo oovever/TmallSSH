@@ -30,9 +30,10 @@ import java.util.List;
 @ParentPackage("basicstruts")
 @Results(
         {
-            /*分类管理*/
+           /*分类管理*/
                 @Result(name="listCategory", location="/admin/listCategory.jsp"),
                 @Result(name="listCategoryPage", type = "redirect", location="/admin_category_list"),
+                @Result(name="editCategory", location="/admin/editCategory.jsp"),
         })
 public class CategoryAction {
 
@@ -94,6 +95,30 @@ public class CategoryAction {
     @Action("admin_category_delete")
     public String  delete(){
         categoryService.delete(category);
+        return "listCategoryPage";
+    }
+    @Action("admin_category_edit")
+    public String edit() {
+        int id = category.getId();
+        category = categoryService.get(Category.class,id);
+        return "editCategory";
+    }
+    @Action("admin_category_update")
+    public String update() {
+        categoryService.update(category);
+        if(null!=img){
+            File  imageFolder= new File(ServletActionContext.getServletContext().getRealPath("img/category"));
+            File file = new File(imageFolder,category.getId()+".jpg");
+            try {
+                FileUtils.copyFile(img, file);
+                BufferedImage img = ImageUtil.change2jpg(file);
+                ImageIO.write(img, "jpg", file);
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
+        }
+
         return "listCategoryPage";
     }
     public List<Category> getCategorys() {
