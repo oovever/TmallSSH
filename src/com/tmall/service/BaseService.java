@@ -19,4 +19,7 @@ public interface BaseService {
     public List listByPage(Page page);
     public int total();
 
+    public List listByParent(Object parent);
+    List list(Page page, Object parent);
+    int total(Object parentObject);
 }
