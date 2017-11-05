@@ -26,58 +26,19 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-@Namespace("/")
-@ParentPackage("basicstruts")
-@Results(
-        {
-           /*分类管理*/
-                @Result(name="listCategory", location="/admin/listCategory.jsp"),
-                @Result(name="listCategoryPage", type = "redirect", location="/admin_category_list"),
-                @Result(name="editCategory", location="/admin/editCategory.jsp"),
-        })
-public class CategoryAction {
+public class CategoryAction extends Action4Result{
 
-    @Autowired
-    CategoryService categoryService;
-    List<Category> categorys;
-    Category category;
-    File           img;
-
-    public CategoryService getCategoryService() {
-        return categoryService;
-    }
-
-    public void setCategoryService(CategoryService categoryService) {
-        this.categoryService = categoryService;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public File getImg() {
-        return img;
-    }
-
-    public void setImg(File img) {
-        this.img = img;
-    }
-
-    Page page;
     @Action("admin_category_list")
     public String list() {
-        if (page == null) {
+
+        if(page==null)
             page = new Page();
-        }
         int total = categoryService.total();
         page.setTotal(total);
         categorys = categoryService.listByPage(page);
         return "listCategory";
     }
+
     @Action("admin_category_add")
     public String add() {
         categoryService.save(category);
@@ -92,18 +53,19 @@ public class CategoryAction {
         }
         return "listCategoryPage";
     }
+
     @Action("admin_category_delete")
-    public String  delete(){
+    public String delete() {
         categoryService.delete(category);
         return "listCategoryPage";
     }
+
     @Action("admin_category_edit")
     public String edit() {
-        int id = category.getId();
-//        category = (Ca)categoryService.get(Category.class,id);
-        category = (Category) categoryService.get(id);
+        t2p(category);
         return "editCategory";
     }
+
     @Action("admin_category_update")
     public String update() {
         categoryService.update(category);
@@ -121,20 +83,5 @@ public class CategoryAction {
         }
 
         return "listCategoryPage";
-    }
-    public List<Category> getCategorys() {
-        return categorys;
-    }
-
-    public void setCategorys(List<Category> categorys) {
-        this.categorys = categorys;
-    }
-
-    public Page getPage() {
-        return page;
-    }
-
-    public void setPage(Page page) {
-        this.page = page;
     }
 }
