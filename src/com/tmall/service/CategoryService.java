@@ -1,5 +1,8 @@
 package com.tmall.service;
 
+import com.tmall.pojo.Category;
+import com.tmall.util.Page;
+
 import java.util.List;
 
 /**
@@ -7,4 +10,6 @@ import java.util.List;
  */
 public interface CategoryService {
     public List list();
+    public int total();
+    public List<Category> listByPage(Page page);
 }

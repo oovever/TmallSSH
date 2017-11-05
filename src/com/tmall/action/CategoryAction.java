@@ -6,6 +6,7 @@ package com.tmall.action;
  */
 
 
+import com.tmall.util.Page;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -31,11 +32,15 @@ public class CategoryAction {
     CategoryService categoryService;
 
     List<Category> categorys;
-
+    Page page;
     @Action("admin_category_list")
     public String list() {
-        categorys = categoryService.list();
-        System.out.println(categorys);
+        if (page == null) {
+            page = new Page();
+        }
+        int total = categoryService.total();
+        page.setTotal(total);
+        categorys = categoryService.listByPage(page);
         return "listCategory";
     }
 
@@ -47,4 +52,11 @@ public class CategoryAction {
         this.categorys = categorys;
     }
 
+    public Page getPage() {
+        return page;
+    }
+
+    public void setPage(Page page) {
+        this.page = page;
+    }
 }
