@@ -16,47 +16,6 @@ import com.tmall.util.Page;
  * Created by OovEver on 2017/11/1.
  */
 @Service
-public class CategoryServiceImpl implements CategoryService {
-    @Autowired DAOImpl dao;
-    @Override
-    public List list() {
-        DetachedCriteria dc = DetachedCriteria.forClass(Category.class);
-        dc.addOrder(Order.desc("id"));
-        return dao.findByCriteria(dc);
-    }
-    @Override
-    public int total() {
-        String hql = "select count(*) from com.tmall.pojo.Category ";
-        List<Long> l= dao.find(hql);
-        if(l.isEmpty())
-            return 0;
-        Long result= l.get(0);
-        return result.intValue();
-    }
-
-    @Override
-    public void save(Category category) {
-        dao.save(category);
-    }
-
-    @Override
-    public List<Category> listByPage(Page page) {
-        DetachedCriteria dc = DetachedCriteria.forClass(Category.class);
-        dc.addOrder(Order.desc("id"));
-        return dao.findByCriteria(dc,page.getStart(),page.getCount());
-    }
-    @Override
-    public void delete(Category category) {
-        dao.delete(category);
-    }
-
-    @Override
-    public Category get(Class clazz, int id) {
-        return (Category) dao.get(clazz, id);
-    }
-    @Override
-    public void update(Category category) {
-        dao.update(category);
-    }
+public class CategoryServiceImpl extends BaseServiceImpl implements CategoryService {
 
 }
