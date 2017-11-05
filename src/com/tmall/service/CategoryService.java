@@ -11,5 +11,7 @@ import java.util.List;
 public interface CategoryService {
     public List list();
     public int total();
+
+    public void save(Category category);
     public List<Category> listByPage(Page page);
 }

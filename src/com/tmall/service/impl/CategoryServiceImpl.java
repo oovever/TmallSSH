@@ -26,13 +26,19 @@ public class CategoryServiceImpl implements CategoryService {
     }
     @Override
     public int total() {
-        String hql = "select count(*) from Category ";
+        String hql = "select count(*) from com.tmall.pojo.Category ";
         List<Long> l= dao.find(hql);
         if(l.isEmpty())
             return 0;
         Long result= l.get(0);
         return result.intValue();
     }
+
+    @Override
+    public void save(Category category) {
+        dao.save(category);
+    }
+
     @Override
     public List<Category> listByPage(Page page) {
         DetachedCriteria dc = DetachedCriteria.forClass(Category.class);
