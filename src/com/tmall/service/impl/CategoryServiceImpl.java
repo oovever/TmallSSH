@@ -45,4 +45,8 @@ public class CategoryServiceImpl implements CategoryService {
         dc.addOrder(Order.desc("id"));
         return dao.findByCriteria(dc,page.getStart(),page.getCount());
     }
+    @Override
+    public void delete(Category category) {
+        dao.delete(category);
+    }
 }
