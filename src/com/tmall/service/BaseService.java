@@ -22,4 +22,6 @@ public interface BaseService {
     public List listByParent(Object parent);
     List list(Page page, Object parent);
     int total(Object parentObject);
+
+    public List list(Object... pairParms);
 }

@@ -12,7 +12,9 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by OovEver on 2017/11/5.
@@ -93,6 +95,27 @@ public class BaseServiceImpl  extends ServiceDelegateDAO implements BaseService 
             return 0;
         Long result= l.get(0);
         return result.intValue();
+    }
+
+    @Override
+    public List list(Object... pairParms) {
+        HashMap<String, Object> m = new HashMap<>();
+        for(int i=0;i<pairParms.length;i+=2) {
+            m.put(pairParms[i].toString(), pairParms[i + 1]);
+        }
+        DetachedCriteria dc = DetachedCriteria.forClass(clazz);
+        Set<String> ks = m.keySet();
+        for (String key : ks) {
+            if (null == m.get(key)) {
+//                判断属性是否为空
+                dc.add(Restrictions.isNull(key));
+            } else {
+                dc.add(Restrictions.eq(key, m.get(key)));
+            }
+
+        }
+        dc.addOrder(Order.desc("id"));
+        return this.findByCriteria(dc);
     }
 
     @Override
