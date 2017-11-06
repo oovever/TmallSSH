@@ -2,7 +2,9 @@ package com.tmall.action;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.tmall.pojo.User;
+import javafx.application.Application;
 import org.apache.struts2.convention.annotation.Action;
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.util.HtmlUtils;
 
 /**
@@ -38,6 +40,11 @@ public class ForeAction extends Action4Result{
             return "login.jsp";
         }
         ActionContext.getContext().getSession().put("user", user_session);
+        return "homePage";
+    }
+    @Action("forelogout")
+    public String logout() {
+        ActionContext.getContext().getSession().remove("user");
         return "homePage";
     }
 }
