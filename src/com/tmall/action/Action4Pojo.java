@@ -1,6 +1,8 @@
 package com.tmall.action;
 
 import com.tmall.pojo.Category;
+import com.tmall.pojo.Product;
+import com.tmall.pojo.Property;
 
 import java.util.List;
 
@@ -11,9 +13,13 @@ import java.util.List;
  getter用于提供数据到JSP(VIEW)上
  */
 public class Action4Pojo extends  Action4Pagination {
-    protected Category category;
+    protected Category       category;
+    protected Property       property;
+    protected Product product;
 
+    protected List<Property> propertys;
     protected List<Category> categorys;
+    protected List<Product>  products;
 
     public Category getCategory() {
         return category;
@@ -29,5 +35,35 @@ public class Action4Pojo extends  Action4Pagination {
 
     public void setCategorys(List<Category> categorys) {
         this.categorys = categorys;
+    }
+    public Property getProperty() {
+        return property;
+    }
+
+    public void setProperty(Property property) {
+        this.property = property;
+    }
+
+    public List<Property> getPropertys() {
+        return propertys;
+    }
+
+    public void setPropertys(List<Property> propertys) {
+        this.propertys = propertys;
+    }
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }

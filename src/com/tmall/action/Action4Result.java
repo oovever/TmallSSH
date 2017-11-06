@@ -12,6 +12,23 @@ import org.apache.struts2.convention.annotation.Results;
 @ParentPackage("basicstruts")
 @Results(
         {
+                /*属性管理*/
+                @Result(name="listProperty", location="/admin/listProperty.jsp"),
+                @Result(name="editProperty", location="/admin/editProperty.jsp"),
+                @Result(name="listPropertyPage", type = "redirect", location="/admin_property_list?category.id=${property.category.id}"),
+
+
+			/*产品管理*/
+                @Result(name="listProduct", location="/admin/listProduct.jsp"),
+                @Result(name="editProduct", location="/admin/editProduct.jsp"),
+                @Result(name="listProductPage", type = "redirect", location="/admin_product_list?category.id=${product.category.id}"),
+
+/*产品图片管理*/
+                @Result(name="listProductImage", location="/admin/listProductImage.jsp"),
+                @Result(name="listProductImagePage", type = "redirect", location="/admin_productImage_list?product.id=${productImage.product.id}"),
+
+			/*属性值管理*/
+			@Result(name="editPropertyValue", location="/admin/editProductValue.jsp"),
             /*分类管理*/
                 @Result(name="listCategory", location="/admin/listCategory.jsp"),
                 @Result(name="editCategory", location="/admin/editCategory.jsp"),
