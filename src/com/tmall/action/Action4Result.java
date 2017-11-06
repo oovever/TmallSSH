@@ -36,6 +36,8 @@ import org.apache.struts2.convention.annotation.Results;
                 @Result(name="listCategory", location="/admin/listCategory.jsp"),
                 @Result(name="editCategory", location="/admin/editCategory.jsp"),
                 @Result(name="listCategoryPage", type = "redirect", location="/admin_category_list"),
+                	/*用户管理*/
+                @Result(name="listUser", location="/admin/listUser.jsp"),
         })
 public class Action4Result extends Action4Service{
 }

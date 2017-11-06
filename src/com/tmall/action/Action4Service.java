@@ -20,6 +20,8 @@ public class Action4Service extends Action4Pojo{
     ProductImageService productImageService;
     @Autowired
     PropertyValueService propertyValueService;
+    @Autowired
+    UserService userService;
     /**
      * transient to persistent
      * 瞬时对象转换为持久对象

@@ -47,7 +47,6 @@ public class BaseServiceImpl  extends ServiceDelegateDAO implements BaseService 
     @Override
     public List list() {
         DetachedCriteria dc = DetachedCriteria.forClass(clazz);
-        dc.addOrder(Order.desc("id"));
         return findByCriteria(dc);
     }
     @Override
