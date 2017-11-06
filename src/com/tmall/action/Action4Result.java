@@ -12,6 +12,9 @@ import org.apache.struts2.convention.annotation.Results;
 @ParentPackage("basicstruts")
 @Results(
         {
+                	/*全局的*/
+                @Result(name="success.jsp", location="/success.jsp"),
+                @Result(name="fail.jsp", location="/fail.jsp"),
                 /*属性管理*/
                 @Result(name="listProperty", location="/admin/listProperty.jsp"),
                 @Result(name="editProperty", location="/admin/editProperty.jsp"),

@@ -1,9 +1,6 @@
 package com.tmall.action;
 
-import com.tmall.pojo.Category;
-import com.tmall.pojo.Product;
-import com.tmall.pojo.ProductImage;
-import com.tmall.pojo.Property;
+import com.tmall.pojo.*;
 
 import java.util.List;
 
@@ -14,16 +11,19 @@ import java.util.List;
  getter用于提供数据到JSP(VIEW)上
  */
 public class Action4Pojo extends  Action4Pagination {
-    protected Category       category;
-    protected Property       property;
+    protected Category category;
+    protected Property property;
     protected Product product;
     protected ProductImage productImage;
+    protected PropertyValue propertyValue;
 
-    protected List<Property> propertys;
     protected List<Category> categorys;
-    protected List<Product>  products;
+    protected List<Property> propertys;
+    protected List<Product> products;
     protected List<ProductImage> productSingleImages;
     protected List<ProductImage> productDetailImages;
+    protected List<PropertyValue> propertyValues;
+
     public Category getCategory() {
         return category;
     }
@@ -39,6 +39,7 @@ public class Action4Pojo extends  Action4Pagination {
     public void setCategorys(List<Category> categorys) {
         this.categorys = categorys;
     }
+
     public Property getProperty() {
         return property;
     }
@@ -54,6 +55,7 @@ public class Action4Pojo extends  Action4Pagination {
     public void setPropertys(List<Property> propertys) {
         this.propertys = propertys;
     }
+
     public Product getProduct() {
         return product;
     }
@@ -69,6 +71,7 @@ public class Action4Pojo extends  Action4Pagination {
     public void setProducts(List<Product> products) {
         this.products = products;
     }
+
     public ProductImage getProductImage() {
         return productImage;
     }
@@ -91,5 +94,21 @@ public class Action4Pojo extends  Action4Pagination {
 
     public void setProductDetailImages(List<ProductImage> productDetailImages) {
         this.productDetailImages = productDetailImages;
+    }
+
+    public PropertyValue getPropertyValue() {
+        return propertyValue;
+    }
+
+    public void setPropertyValue(PropertyValue propertyValue) {
+        this.propertyValue = propertyValue;
+    }
+
+    public List<PropertyValue> getPropertyValues() {
+        return propertyValues;
+    }
+
+    public void setPropertyValues(List<PropertyValue> propertyValues) {
+        this.propertyValues = propertyValues;
     }
 }

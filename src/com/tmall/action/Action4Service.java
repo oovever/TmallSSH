@@ -1,9 +1,6 @@
 package com.tmall.action;
 
-import com.tmall.service.CategoryService;
-import com.tmall.service.ProductImageService;
-import com.tmall.service.ProductService;
-import com.tmall.service.PropertyService;
+import com.tmall.service.*;
 import org.apache.commons.lang.xwork.WordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,13 +11,15 @@ import java.lang.reflect.Method;
  */
 public class Action4Service extends Action4Pojo{
     @Autowired
-    CategoryService     categoryService;
+    CategoryService categoryService;
     @Autowired
-    PropertyService     propertyService;
+    PropertyService propertyService;
     @Autowired
-    ProductService      productService;
+    ProductService productService;
     @Autowired
     ProductImageService productImageService;
+    @Autowired
+    PropertyValueService propertyValueService;
     /**
      * transient to persistent
      * 瞬时对象转换为持久对象
@@ -32,7 +31,7 @@ public class Action4Service extends Action4Pojo{
             int id = (Integer) clazz.getMethod("getId").invoke(o);
             Object persistentBean = categoryService.get(clazz, id);
 
-            String beanName  = clazz.getSimpleName();
+            String beanName = clazz.getSimpleName();
             Method setMethod = getClass().getMethod("set" + WordUtils.capitalize(beanName), clazz);
             setMethod.invoke(this, persistentBean);
         } catch (Exception e) {
