@@ -41,6 +41,9 @@ import org.apache.struts2.convention.annotation.Results;
                 /*订单管理*/
                 @Result(name="listOrder", location="/admin/listOrder.jsp"),
                 @Result(name="listOrderPage", type = "redirect", location="/admin_order_list"),
+
+                	/*前台 服务端跳转*/
+                @Result(name="home.jsp", location="/home.jsp"),
         })
 public class Action4Result extends Action4Service{
 }

@@ -1,11 +1,7 @@
 package com.tmall.pojo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by OovEver on 2017/10/31.
@@ -19,6 +15,12 @@ public class Category {
     @Column(name = "id")
     int id;
     String name;
+//    一个分类下有多个产品
+    @Transient
+    List<Product> products;
+//    一个产品有多行记录
+    @Transient
+    List<List<Product>> productsByRow;
     public int getId() {
         return id;
     }
@@ -36,5 +38,16 @@ public class Category {
     public String toString() {
         return "Category [id=" + id + ", name=" + name + "]";
     }
-
+    public List<Product> getProducts() {
+        return products;
+    }
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+    public List<List<Product>> getProductsByRow() {
+        return productsByRow;
+    }
+    public void setProductsByRow(List<List<Product>> productsByRow) {
+        this.productsByRow = productsByRow;
+    }
 }
