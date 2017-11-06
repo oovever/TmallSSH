@@ -1,6 +1,7 @@
 package com.tmall.action;
 
 import com.tmall.service.CategoryService;
+import com.tmall.service.ProductImageService;
 import com.tmall.service.ProductService;
 import com.tmall.service.PropertyService;
 import org.apache.commons.lang.xwork.WordUtils;
@@ -13,11 +14,13 @@ import java.lang.reflect.Method;
  */
 public class Action4Service extends Action4Pojo{
     @Autowired
-    CategoryService categoryService;
+    CategoryService     categoryService;
     @Autowired
-    PropertyService propertyService;
+    PropertyService     propertyService;
     @Autowired
-    ProductService  productService;
+    ProductService      productService;
+    @Autowired
+    ProductImageService productImageService;
     /**
      * transient to persistent
      * 瞬时对象转换为持久对象

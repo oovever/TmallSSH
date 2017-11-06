@@ -2,6 +2,7 @@ package com.tmall.action;
 
 import com.tmall.pojo.Category;
 import com.tmall.pojo.Product;
+import com.tmall.pojo.ProductImage;
 import com.tmall.pojo.Property;
 
 import java.util.List;
@@ -16,11 +17,13 @@ public class Action4Pojo extends  Action4Pagination {
     protected Category       category;
     protected Property       property;
     protected Product product;
+    protected ProductImage productImage;
 
     protected List<Property> propertys;
     protected List<Category> categorys;
     protected List<Product>  products;
-
+    protected List<ProductImage> productSingleImages;
+    protected List<ProductImage> productDetailImages;
     public Category getCategory() {
         return category;
     }
@@ -65,5 +68,28 @@ public class Action4Pojo extends  Action4Pagination {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+    public ProductImage getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(ProductImage productImage) {
+        this.productImage = productImage;
+    }
+
+    public List<ProductImage> getProductSingleImages() {
+        return productSingleImages;
+    }
+
+    public void setProductSingleImages(List<ProductImage> productSingleImages) {
+        this.productSingleImages = productSingleImages;
+    }
+
+    public List<ProductImage> getProductDetailImages() {
+        return productDetailImages;
+    }
+
+    public void setProductDetailImages(List<ProductImage> productDetailImages) {
+        this.productDetailImages = productDetailImages;
     }
 }

@@ -19,6 +19,9 @@ public class ProductAction extends Action4Result {
         page.setTotal(total);
         page.setParam("&category.id="+category.getId());
         products = productService.list(page,category);
+        for (Product product : products) {
+            productImageService.setFirstProdutImage(product);
+        }
         t2p(category);
         return "listProduct";
     }
