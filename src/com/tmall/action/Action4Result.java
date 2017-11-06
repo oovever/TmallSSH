@@ -44,6 +44,11 @@ import org.apache.struts2.convention.annotation.Results;
 
                 	/*前台 服务端跳转*/
                 @Result(name="home.jsp", location="/home.jsp"),
+                @Result(name="register.jsp", location="/register.jsp"),
+
+                	/*前台 客户端跳转*/
+                @Result(name="registerSuccessPage", type = "redirect", location="/registerSuccess.jsp"),
+                @Result(name="homePage", type = "redirect", location="forehome"),
         })
 public class Action4Result extends Action4Service{
 }

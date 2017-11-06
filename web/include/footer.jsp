@@ -4,7 +4,6 @@
 
 
 <%@include file="modal.jsp" %>
-mmm
 <div id="footer"  class="footer" style="display: block;">
 	
     <div id="footer_ensure" class="footer_ensure">
