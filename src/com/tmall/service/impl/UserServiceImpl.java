@@ -1,6 +1,7 @@
 package com.tmall.service.impl;
 
 
+import com.tmall.pojo.User;
 import com.tmall.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +18,13 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
         if(!l.isEmpty())
             return true;
         return false;
+    }
+
+    @Override
+    public User get(String name, String password) {
+        List<User> l  = list("name",name, "password",password);
+        if(l.isEmpty())
+            return null;
+        return l.get(0);
     }
 }

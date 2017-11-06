@@ -11,10 +11,7 @@ public class UserAction extends Action4Result {
     public String list() {
         if(page==null)
             page = new Page();
-        System.out.println("aaa");
-        System.out.println(userService.list());
         int total = userService.total();
-        System.out.println(total);
         page.setTotal(total);
         users = userService.listByPage(page);
         return "listUser";
