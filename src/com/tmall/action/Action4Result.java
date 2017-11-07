@@ -51,11 +51,19 @@ import org.apache.struts2.convention.annotation.Results;
                 @Result(name="searchResult.jsp", location="/searchResult.jsp"),
                 @Result(name="buy.jsp", location="/buy.jsp"),
                 @Result(name="cart.jsp", location="/cart.jsp"),
+                @Result(name="alipay.jsp", location="/alipay.jsp"),
+                @Result(name="payed.jsp", location="/payed.jsp"),
+                @Result(name="bought.jsp", location="/bought.jsp"),
+                @Result(name="confirmPay.jsp", location="/confirmPay.jsp"),
+                @Result(name="orderConfirmed.jsp", location="/orderConfirmed.jsp"),
+                @Result(name="review.jsp", location="/review.jsp"),
 
                 	/*前台 客户端跳转*/
                 @Result(name="registerSuccessPage", type = "redirect", location="/registerSuccess.jsp"),
                 @Result(name="homePage", type = "redirect", location="forehome"),
                 @Result(name="buyPage", type = "redirect", location="forebuy?oiids=${oiid}"),
+                @Result(name="alipayPage", type = "redirect", location="forealipay?order.id=${order.id}&total=${total}"),
+                @Result(name="reviewPage", type = "redirect", location="forereview?order.id=${order.id}&showonly=${showonly}"),
 
         })
 public class Action4Result extends Action4Parameter{

@@ -5,15 +5,19 @@ import com.tmall.comparator.*;
 import com.tmall.pojo.OrderItem;
 import com.tmall.pojo.Product;
 import com.tmall.pojo.User;
+import com.tmall.service.OrderService;
 import com.tmall.service.ProductImageService;
 import javafx.application.Application;
 import javassist.compiler.ast.Keyword;
+import org.apache.commons.lang.xwork.math.RandomUtils;
 import org.apache.struts2.convention.annotation.Action;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.util.HtmlUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -214,5 +218,33 @@ public class ForeAction extends Action4Result{
     public String deleteOrderItem(){
         orderItemService.delete(orderItem);
         return "success.jsp";
+    }
+    @Action("forecreateOrder")
+    public String createOrder(){
+        List<OrderItem> ois= (List<OrderItem>) ActionContext.getContext().getSession().get("orderItems");
+        if(ois.isEmpty())
+            return "login.jsp";
+        User user =(User) ActionContext.getContext().getSession().get("user");
+        String orderCode = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()) + RandomUtils.nextInt(10000);
+
+        order.setOrderCode(orderCode);
+        order.setCreateDate(new Date());
+        order.setUser(user);
+        order.setStatus(OrderService.waitPay);
+
+        total = orderService.createOrder(order, ois);
+        return "alipayPage";
+    }
+    @Action("forealipay")
+    public String forealipay(){
+        return "alipay.jsp";
+    }
+    @Action("forepayed")
+    public String payed() {
+        t2p(order);
+        order.setStatus(OrderService.waitDelivery);
+        order.setPayDate(new Date());
+        orderService.update(order);
+        return "payed.jsp";
     }
 }
