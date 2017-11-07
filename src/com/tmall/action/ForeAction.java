@@ -2,6 +2,7 @@ package com.tmall.action;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.tmall.comparator.*;
+import com.tmall.pojo.OrderItem;
 import com.tmall.pojo.Product;
 import com.tmall.pojo.User;
 import com.tmall.service.ProductImageService;
@@ -12,6 +13,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.util.HtmlUtils;
 
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by OovEver on 2017/11/6.
@@ -113,5 +115,30 @@ public class ForeAction extends Action4Result{
             productImageService.setFirstProdutImage(product);
 
         return "searchResult.jsp";
+    }
+    @Action("forebuyone")
+    public String buyone() {
+        User user =(User) ActionContext.getContext().getSession().get("user");
+        boolean found = false;
+        List<OrderItem> ois = orderItemService.list("user",user,"order", null);
+        for (OrderItem oi : ois) {
+            if(oi.getProduct().getId()==product.getId()){
+                oi.setNumber(oi.getNumber()+num);
+                orderItemService.update(oi);
+                found = true;
+                oiid = oi.getId();
+                break;
+            }
+        }
+
+        if(!found){
+            OrderItem oi = new OrderItem();
+            oi.setUser(user);
+            oi.setNumber(num);
+            oi.setProduct(product);
+            orderItemService.save(oi);
+            oiid = oi.getId();
+        }
+        return "buyPage";
     }
 }

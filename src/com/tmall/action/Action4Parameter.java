@@ -15,6 +15,13 @@ public class Action4Parameter extends Action4Service {
     protected String contextPath;
     //搜索关键字
     protected String keyword;
+    //购物数量
+    protected int num;
+
+    //立即购买生成的订单项id
+    protected int oiid;
+    //通过购物车选中的多个订单项id
+    protected int[] oiids;
     public Action4Parameter(){
         contextPath = ServletActionContext.getServletContext().getContextPath();
     }
@@ -39,6 +46,30 @@ public class Action4Parameter extends Action4Service {
 
     public void setKeyword(String keyword) {
         this.keyword = keyword;
+    }
+    public int getNum() {
+        return num;
+    }
+
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+    public int getOiid() {
+        return oiid;
+    }
+
+
+    public void setOiid(int oiid) {
+        this.oiid = oiid;
+    }
+    public int[] getOiids() {
+        return oiids;
+    }
+
+
+    public void setOiids(int[] oiids) {
+        this.oiids = oiids;
     }
 
 }
