@@ -196,4 +196,23 @@ public class ForeAction extends Action4Result{
             productImageService.setFirstProdutImage(orderItem.getProduct());
         return "cart.jsp";
     }
+    @Action("forechangeOrderItem")
+    public String changeOrderItem() {
+        User user =(User) ActionContext.getContext().getSession().get("user");
+        List<OrderItem> ois = orderItemService.list("user",user,"order", null);
+        for (OrderItem oi : ois) {
+            if(oi.getProduct().getId()==product.getId()){
+                oi.setNumber(num);
+                orderItemService.update(oi);
+                break;
+            }
+
+        }
+        return "success.jsp";
+    }
+    @Action("foredeleteOrderItem")
+    public String deleteOrderItem(){
+        orderItemService.delete(orderItem);
+        return "success.jsp";
+    }
 }
