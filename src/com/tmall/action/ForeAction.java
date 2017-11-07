@@ -254,4 +254,57 @@ public class ForeAction extends Action4Result{
         orderItemService.fill(orders);
         return "bought.jsp";
     }
+    @Action("foreconfirmPay")
+    public String confirmPay() {
+        t2p(order);
+        orderItemService.fill(order);
+        return "confirmPay.jsp";
+    }
+    @Action("foreorderConfirmed")
+    public String orderConfirmed() {
+        t2p(order);
+        order.setStatus(OrderService.waitReview);
+        order.setConfirmDate(new Date());
+        orderService.update(order);
+        return "orderConfirmed.jsp";
+    }
+    @Action("foredeleteOrder")
+    public String deleteOrder(){
+        t2p(order);
+        order.setStatus(OrderService.delete);
+        orderService.update(order);
+        return "success.jsp";
+    }
+    @Action("forereview")
+    public String review() {
+        t2p(order);
+        orderItemService.fill(order);
+        product = order.getOrderItems().get(0).getProduct();
+        reviews = reviewService.listByParent(product);
+        productService.setSaleAndReviewNumber(product);
+        return "review.jsp";
+    }
+    @Action("foredoreview")
+    public String doreview() {
+        t2p(order);
+        t2p(product);
+
+        order.setStatus(OrderService.finish);
+
+        String content = review.getContent();
+        content = HtmlUtils.htmlEscape(content);
+        review.setContent(content);
+
+        User user =(User) ActionContext.getContext().getSession().get("user");
+
+        review.setContent(content);
+        review.setProduct(product);
+        review.setCreateDate(new Date());
+        review.setUser(user);
+
+        reviewService.saveReviewAndUpdateOrderStatus(review,order);
+
+        showonly = true;
+        return "reviewPage";
+    }
 }

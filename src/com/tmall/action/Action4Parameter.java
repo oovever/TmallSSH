@@ -25,6 +25,11 @@ public class Action4Parameter extends Action4Service {
 
     //结算页面显示的总金额
     protected float total;
+
+
+    //在进行评论的页面，是否只显示评论记录，而不提供输入
+    protected boolean showonly;
+
     public Action4Parameter(){
         contextPath = ServletActionContext.getServletContext().getContextPath();
     }
@@ -82,4 +87,13 @@ public class Action4Parameter extends Action4Service {
     public void setTotal(float total) {
         this.total = total;
     }
+    public boolean isShowonly() {
+        return showonly;
+    }
+
+
+    public void setShowonly(boolean showonly) {
+        this.showonly = showonly;
+    }
+
 }
