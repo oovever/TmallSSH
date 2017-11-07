@@ -12,6 +12,7 @@ import org.apache.struts2.convention.annotation.Action;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.util.HtmlUtils;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -140,5 +141,18 @@ public class ForeAction extends Action4Result{
             oiid = oi.getId();
         }
         return "buyPage";
+    }
+    @Action("forebuy")
+    public String buy() {
+        orderItems = new ArrayList<>();
+        for (int oiid : oiids) {
+            OrderItem oi= (OrderItem) orderItemService.get(oiid);
+            total +=oi.getProduct().getPromotePrice()*oi.getNumber();
+            orderItems.add(oi);
+            productImageService.setFirstProdutImage(oi.getProduct());
+        }
+
+        ActionContext.getContext().getSession().put("orderItems", orderItems);
+        return "buy.jsp";
     }
 }

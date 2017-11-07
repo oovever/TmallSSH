@@ -22,6 +22,9 @@ public class Action4Parameter extends Action4Service {
     protected int oiid;
     //通过购物车选中的多个订单项id
     protected int[] oiids;
+
+    //结算页面显示的总金额
+    protected float total;
     public Action4Parameter(){
         contextPath = ServletActionContext.getServletContext().getContextPath();
     }
@@ -71,5 +74,12 @@ public class Action4Parameter extends Action4Service {
     public void setOiids(int[] oiids) {
         this.oiids = oiids;
     }
+    public float getTotal() {
+        return total;
+    }
 
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
 }
