@@ -13,6 +13,8 @@ public class Action4Parameter extends Action4Service {
 
     //当前所处于的web应用名称，如果按照教程来
     protected String contextPath;
+    //搜索关键字
+    protected String keyword;
     public Action4Parameter(){
         contextPath = ServletActionContext.getServletContext().getContextPath();
     }
@@ -30,4 +32,13 @@ public class Action4Parameter extends Action4Service {
     public void setSort(String sort) {
         this.sort = sort;
     }
+    public String getKeyword() {
+        return keyword;
+    }
+
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
 }

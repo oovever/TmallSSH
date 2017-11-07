@@ -2,9 +2,11 @@ package com.tmall.action;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.tmall.comparator.*;
+import com.tmall.pojo.Product;
 import com.tmall.pojo.User;
 import com.tmall.service.ProductImageService;
 import javafx.application.Application;
+import javassist.compiler.ast.Keyword;
 import org.apache.struts2.convention.annotation.Action;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.util.HtmlUtils;
@@ -102,5 +104,14 @@ public class ForeAction extends Action4Result{
             }
         }
         return "category.jsp";
+    }
+    @Action( "foresearch")
+    public String search() {
+        products= productService.search(keyword,0,20);
+        productService.setSaleAndReviewNumber(products);
+        for (Product product : products)
+            productImageService.setFirstProdutImage(product);
+
+        return "searchResult.jsp";
     }
 }

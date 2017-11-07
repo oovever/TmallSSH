@@ -7,6 +7,8 @@ import com.tmall.service.OrderItemService;
 import com.tmall.service.ProductImageService;
 import com.tmall.service.ProductService;
 import com.tmall.service.ReviewService;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -73,5 +75,12 @@ public class ProductServiceImpl extends BaseServiceImpl implements ProductServic
             setSaleAndReviewNumber(product);
 
         }
+    }
+
+    @Override
+    public List<Product> search(String keyword, int start, int count) {
+        DetachedCriteria dc = DetachedCriteria.forClass(clazz);
+        dc.add(Restrictions.like("name", "%" + keyword + "%"));
+        return findByCriteria(dc, start, count);
     }
 }

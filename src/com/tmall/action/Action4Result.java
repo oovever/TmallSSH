@@ -48,6 +48,7 @@ import org.apache.struts2.convention.annotation.Results;
                 @Result(name="login.jsp", location="/login.jsp"),
                 @Result(name="product.jsp", location="/product.jsp"),
                 @Result(name="category.jsp", location="/category.jsp"),
+                @Result(name="searchResult.jsp", location="/searchResult.jsp"),
 
                 	/*前台 客户端跳转*/
                 @Result(name="registerSuccessPage", type = "redirect", location="/registerSuccess.jsp"),
