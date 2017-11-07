@@ -247,4 +247,11 @@ public class ForeAction extends Action4Result{
         orderService.update(order);
         return "payed.jsp";
     }
+    @Action("forebought")
+    public String bought() {
+        User user =(User) ActionContext.getContext().getSession().get("user");
+        orders = orderService.listByUserWithoutDelete(user);
+        orderItemService.fill(orders);
+        return "bought.jsp";
+    }
 }

@@ -2,7 +2,10 @@ package com.tmall.service.impl;
 
 import com.tmall.pojo.Order;
 import com.tmall.pojo.OrderItem;
+import com.tmall.pojo.User;
 import com.tmall.service.OrderItemService;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +34,13 @@ public class OrderServiceImpl extends BaseServiceImpl implements OrderService{
             total+=oi.getProduct().getPromotePrice()*oi.getNumber();
         }
         return total;
+    }
+
+    @Override
+    public List<Order> listByUserWithoutDelete(User user) {
+        DetachedCriteria dc = DetachedCriteria.forClass(clazz);
+        dc.add(Restrictions.eq("user", user));
+        dc.add(Restrictions.ne("status", OrderService.delete));
+        return findByCriteria(dc);
     }
 }

@@ -2,6 +2,7 @@ package com.tmall.service;
 
 import com.tmall.pojo.Order;
 import com.tmall.pojo.OrderItem;
+import com.tmall.pojo.User;
 
 import java.util.List;
 
@@ -16,4 +17,5 @@ public interface OrderService extends BaseService{
     public static final String finish = "finish";
     public static final String delete = "delete";
     public float createOrder(Order order, List<OrderItem> ois);
+    public List<Order> listByUserWithoutDelete(User user);
 }
