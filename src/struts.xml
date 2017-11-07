@@ -10,10 +10,12 @@
         <interceptors>
             <interceptor name="authorityInterceptor" class="com.tmall.interceptor.AuthInterceptor"></interceptor>
             <interceptor name="categoryNamesBelowSearchInterceptor" class="com.tmall.interceptor.CategoryNamesBelowSearchInterceptor"></interceptor>
+            <interceptor name="cartTotalItemNumberInterceptor" class="com.tmall.interceptor.CartTotalItemNumberInterceptor"></interceptor>
             <!-- 拦截器栈 -->
             <interceptor-stack name="auth-default">
                 <interceptor-ref name="authorityInterceptor" />
                 <interceptor-ref name="categoryNamesBelowSearchInterceptor" />
+                <interceptor-ref name="cartTotalItemNumberInterceptor" />
                 <interceptor-ref name="defaultStack" />
             </interceptor-stack>
         </interceptors>
