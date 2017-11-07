@@ -61,4 +61,13 @@ public class ForeAction extends Action4Result{
         productService.setSaleAndReviewNumber(product);
         return "product.jsp";
     }
+    @Action("foreloginAjax")
+    public String liginAjax() {
+        user.setName(HtmlUtils.htmlEscape(user.getName()));
+        User user_session = userService.get(user.getName(), user.getPassword());
+        if(null==user_session)
+            return "fail.jsp";
+        ActionContext.getContext().getSession().put("user", user_session);
+        return "success.jsp";
+    }
 }
