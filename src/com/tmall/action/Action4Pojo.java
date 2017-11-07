@@ -18,6 +18,7 @@ public class Action4Pojo extends  Action4Pagination {
     protected PropertyValue propertyValue;
     protected User user;
     protected Order order;
+    protected Review review;
 
     protected List<Category> categorys;
     protected List<Property> propertys;
@@ -27,6 +28,7 @@ public class Action4Pojo extends  Action4Pagination {
     protected List<PropertyValue> propertyValues;
     protected List<User> users;
     protected List<Order> orders;
+    protected List<Review> reviews;
 
     public Category getCategory() {
         return category;
@@ -144,5 +146,21 @@ public class Action4Pojo extends  Action4Pagination {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    public Review getReview() {
+        return review;
+    }
+
+    public void setReview(Review review) {
+        this.review = review;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }

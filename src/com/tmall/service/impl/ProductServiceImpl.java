@@ -1,9 +1,12 @@
 package com.tmall.service.impl;
 
 import com.tmall.pojo.Category;
+import com.tmall.pojo.OrderItem;
 import com.tmall.pojo.Product;
+import com.tmall.service.OrderItemService;
 import com.tmall.service.ProductImageService;
 import com.tmall.service.ProductService;
+import com.tmall.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,10 @@ import java.util.List;
 public class ProductServiceImpl extends BaseServiceImpl implements ProductService {
     @Autowired
     ProductImageService productImageService;
+    @Autowired
+    OrderItemService    orderItemService;
+    @Autowired
+    ReviewService       reviewService;
 //    1. 为分类填充产品集合
     @Override
     public void fill(List<Category> categorys) {
@@ -48,6 +55,23 @@ public class ProductServiceImpl extends BaseServiceImpl implements ProductServic
             }
 
             category.setProductsByRow(productsByRow);
+        }
+    }
+
+    @Override
+    public void setSaleAndReviewNumber(Product product) {
+        int saleCount = orderItemService.total(product);
+        product.setSaleCount(saleCount);
+        int reveiewCount = reviewService.total(product);
+        product.setReviewCount(reveiewCount);
+
+    }
+
+    @Override
+    public void setSaleAndReviewNumber(List<Product> products) {
+        for (Product product : products) {
+            setSaleAndReviewNumber(product);
+
         }
     }
 }

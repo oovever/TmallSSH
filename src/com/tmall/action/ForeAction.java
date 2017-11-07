@@ -2,6 +2,7 @@ package com.tmall.action;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.tmall.pojo.User;
+import com.tmall.service.ProductImageService;
 import javafx.application.Application;
 import org.apache.struts2.convention.annotation.Action;
 import org.springframework.context.ApplicationContext;
@@ -46,5 +47,18 @@ public class ForeAction extends Action4Result{
     public String logout() {
         ActionContext.getContext().getSession().remove("user");
         return "homePage";
+    }
+    @Action("foreproduct")
+    public String product() {
+        t2p(product);
+
+        productImageService.setFirstProdutImage(product);
+        productSingleImages = productImageService.list("product",product,"type", ProductImageService.type_single);
+        productDetailImages = productImageService.list("product",product,"type", ProductImageService.type_detail);
+        product.setProductSingleImages(productSingleImages);
+        product.setProductDetailImages(productDetailImages);
+        reviews = reviewService.listByParent(product);
+        productService.setSaleAndReviewNumber(product);
+        return "product.jsp";
     }
 }

@@ -26,6 +26,8 @@ public class Action4Service extends Action4Pojo{
     OrderService orderService;
     @Autowired
     OrderItemService orderItemService;
+    @Autowired
+    ReviewService reviewService;
     /**
      * transient to persistent
      * 瞬时对象转换为持久对象
