@@ -180,4 +180,12 @@ public class ForeAction extends Action4Result{
         }
         return "success.jsp";
     }
+    @Action("forecart")
+    public String cart() {
+        User user =(User) ActionContext.getContext().getSession().get("user");
+        orderItems = orderItemService.list("user",user,"order", null);
+        for (OrderItem orderItem : orderItems)
+            productImageService.setFirstProdutImage(orderItem.getProduct());
+        return "cart.jsp";
+    }
 }
