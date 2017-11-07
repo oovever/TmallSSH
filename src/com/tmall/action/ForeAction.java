@@ -108,6 +108,14 @@ public class ForeAction extends Action4Result{
         }
         return "category.jsp";
     }
+    @Action("forecheckLogin")
+    public String checkLogin() {
+        User u =(User) ActionContext.getContext().getSession().get("user");
+        if(null==u)
+            return "fail.jsp";
+        else
+            return "success.jsp";
+    }
     @Action( "foresearch")
     public String search() {
         products= productService.search(keyword,0,20);

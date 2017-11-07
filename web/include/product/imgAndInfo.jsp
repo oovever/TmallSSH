@@ -227,7 +227,7 @@ $(function(){
 		
 		<div class="buyDiv">
 			<a class="buyLink" href="forebuyone?product.id=${product.id}"><button class="buyButton">立即购买</button></a>
-			<a href="#nowhere" class="addCartLink"><button class="addCartButton"><span class="glyphicon glyphicon-shopping-cart"></span>加入购物车</button></a>
+			<a href="foreaddCart?product.id=${product.id}" class="addCartLink"><button class="addCartButton"><span class="glyphicon glyphicon-shopping-cart"></span>加入购物车</button></a>
 		</div>
 	</div>
 	
