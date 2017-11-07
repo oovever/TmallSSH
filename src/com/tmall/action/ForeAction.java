@@ -155,4 +155,29 @@ public class ForeAction extends Action4Result{
         ActionContext.getContext().getSession().put("orderItems", orderItems);
         return "buy.jsp";
     }
+    @Action("foreaddCart")
+    public String addCart() {
+
+        User user =(User) ActionContext.getContext().getSession().get("user");
+        boolean found = false;
+
+        List<OrderItem> ois = orderItemService.list("user",user,"order", null);
+        for (OrderItem oi : ois) {
+            if(oi.getProduct().getId()==product.getId()){
+                oi.setNumber(oi.getNumber()+num);
+                orderItemService.update(oi);
+                found = true;
+                break;
+            }
+        }
+
+        if(!found){
+            OrderItem oi = new OrderItem();
+            oi.setUser(user);
+            oi.setNumber(num);
+            oi.setProduct(product);
+            orderItemService.save(oi);
+        }
+        return "success.jsp";
+    }
 }
